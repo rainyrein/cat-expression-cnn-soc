@@ -28,7 +28,7 @@ module CustomIP #(
     localparam IDLE = 2'd0, COMPUTE = 2'd1, FINISH = 2'd2;
 
     integer w_offset;
-    reg signed [19:0] mac_sum;
+    reg signed [23:0] mac_sum;
     reg [15:0] relu_out;
     integer idx_out;
 
@@ -67,7 +67,7 @@ module CustomIP #(
                         ($signed({1'b0, img_mem[(row+2)*IMG_WIDTH + (col+2)]}) * weight_mem[w_offset + 8]);
 
                     if (mac_sum > 0)
-                        relu_out = mac_sum[21:6];
+                        relu_out = mac_sum[18:3];
                     else
                         relu_out = 16'd0;
 
