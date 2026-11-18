@@ -27,11 +27,57 @@ r1
 !s85 0
 31
 Z5 !s108 1795010144.000000
-!s107 tb_CustomIP.v|CustomIP.v|
-Z6 !s90 -reportprogress|300|CustomIP.v|tb_CustomIP.v|
+Z6 !s107 tb_CustomIP.v|CustomIP.v|
+Z7 !s90 -reportprogress|300|CustomIP.v|tb_CustomIP.v|
 !i113 1
-Z7 tCvgOpt 0
+Z8 tCvgOpt 0
 n@custom@i@p
+vCustomIP_Classifier
+Z9 !s110 1795010549
+!i10b 1
+!s100 IZ1E^`koWY0887mIg2^GI0
+R2
+IHP66l6NQOI=N`BCIe7oXG1
+R3
+R0
+w1795010534
+8CustomIP_Classifier.v
+FCustomIP_Classifier.v
+!i122 4
+L0 2 44
+R4
+r1
+!s85 0
+31
+Z10 !s108 1795010549.000000
+!s107 tb_Accuracy.v|CustomIP_Classifier.v|
+Z11 !s90 -reportprogress|300|CustomIP_Classifier.v|tb_Accuracy.v|
+!i113 1
+R8
+n@custom@i@p_@classifier
+vtb_Accuracy
+R9
+!i10b 1
+!s100 9I8z49F`51IFcb;JX8Y8O0
+R2
+I81W7chS99MzDJ>m6016@72
+R3
+R0
+w1795010535
+8tb_Accuracy.v
+Ftb_Accuracy.v
+!i122 4
+L0 2 30
+R4
+r1
+!s85 0
+31
+R10
+Z12 !s107 tb_Accuracy.v|CustomIP_Classifier.v|
+R11
+!i113 1
+R8
+ntb_@accuracy
 vtb_CustomIP
 R1
 !i10b 1
@@ -50,8 +96,8 @@ r1
 !s85 0
 31
 R5
-Z8 !s107 tb_CustomIP.v|CustomIP.v|
 R6
-!i113 1
 R7
+!i113 1
+R8
 ntb_@custom@i@p
