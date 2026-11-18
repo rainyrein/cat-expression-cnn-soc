@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['Angry', 'Happy', 'Sad', 'Surprised']
+
+roboflow:
+  workspace: project-ukxe5
+  project: cat-expression-detection-v2
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/project-ukxe5/cat-expression-detection-v2/dataset/1
