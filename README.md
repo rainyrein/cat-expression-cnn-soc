@@ -11,7 +11,7 @@ Repository ini berisi rancangan dan implementasi akselerator perangkat keras **C
 | **`dataset/`** | Menyimpan **dataset mentah asli** (960 gambar) yang terbagi ke dalam `train`, `valid`, dan `test` beserta anotasi koordinat wajah kucing sebelum diproses. |
 | **`dataset_64x64_bmp/`** | Menyimpan **sampel citra uji hasil preprocessing** berformat `.bmp` berukuran **64x64 piksel** (60x60 piksel wajah hasil *auto-crop* + 2 piksel *blank/zero-padding* di setiap tepi) untuk pengujian pembacaan citra. |
 | **`algorithm/`** | Menyimpan skrip dan *notebook* **Python** (`Untitled0.ipynb`, `preprocess_and_cnn.py`) untuk membaca citra `.bmp`, melatih model CNN, memvalidasi akurasi perangkat lunak (**86.46%**), serta mengekspor bobot dan fitur terkuantisasi ke format `.hex`. |
-| **`verilog/`** | Menyimpan kode sumber **Verilog HDL** (`CustomIP.v`, `CustomIP_Classifier.v`), *testbench* (`tb_CustomIP.v`, `tb_Accuracy.v`), dan file memori (`.hex`) yang disimulasikan dan diverifikasi pada **ModelSim** dan **Quartus Prime** (**85.42%**). |
+| **`verilog/`** | Menyimpan kode sumber **Verilog HDL** (`CustomIP.v`, `CustomIP_Classifier.v`), *testbench* ModelSim (`tb_CustomIP.v`, `tb_Accuracy.v`), *testbench* Google Colab (`tb_Colab.v`), dan file memori (`.hex`) yang diverifikasi pada **ModelSim**, **Google Colab**, dan **Quartus Prime** (**85.42%**). |
 | **`laporan/`** | Menyimpan dokumentasi lengkap hasil pengujian (`README.md`) beserta tangkapan layar prediksi Python, gelombang *waveform* konvolusi ModelSim, dan bukti akurasi RTL. |
 
 ---
@@ -34,9 +34,10 @@ Repository ini berisi rancangan dan implementasi akselerator perangkat keras **C
 - **`CustomIP.v`**: Mengimplementasikan unit akselerator konvolusi 2D (kernel 3x3) dengan operasi *Multiply-Accumulate* (MAC) paralel serta fungsi aktivasi **ReLU** pada citra masukan 64x64 piksel.
 - **`CustomIP_Classifier.v`**: Mengimplementasikan lapisan klasifikasi akhir terkuantisasi 8-bit yang menghitung akumulasi skor untuk 4 kelas ekspresi dan memilih kelas dengan skor tertinggi.
 
-### Step 5: Simulasi Fungsional & Validasi Akurasi di ModelSim (`laporan/`)
-- **Uji Konvolusi (`tb_CustomIP.v`)**: Simulasi berjalan dengan 0 error pada clock **50 MHz** dengan total waktu eksekusi **153.950 ns** (~0,154 ms) untuk 2 filter, menghasilkan **123 piksel aktif** (aktivasi maks. 157) pada Filter 0 dan **3.783 piksel aktif** (aktivasi maks. 1.090) pada Filter 1.
+### Step 5: Simulasi Fungsional & Validasi Akurasi (ModelSim & Google Colab)
+- **Uji Konvolusi (`tb_CustomIP.v`)**: Simulasi di ModelSim berjalan dengan 0 error pada clock **50 MHz** dengan total waktu eksekusi **153.950 ns** (~0,154 ms) untuk 2 filter, menghasilkan **123 piksel aktif** (aktivasi maks. 157) pada Filter 0 dan **3.783 piksel aktif** (aktivasi maks. 1.090) pada Filter 1.
 - **Uji Akurasi Batch (`tb_Accuracy.v`)**: Pengujian langsung terhadap seluruh **96 sampel uji** pada level RTL menghasilkan **82 prediksi benar dari 96 citra** atau **akurasi hardware 85.42%**.
+- **Verifikasi Reproducible di Google Colab (`tb_Colab.v`)**: Simulasi gabungan RTL menggunakan **Icarus Verilog (`iverilog`)** di Google Colab menghasilkan output dan akurasi yang identik (**85.42%**) tanpa memerlukan instalasi ModelSim lokal.
 
 ---
 
